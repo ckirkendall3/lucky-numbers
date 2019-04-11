@@ -21,6 +21,12 @@ class LuckyNumberAppTest extends FunSuite {
     assert(app.processRequest(Array("800"), new LuckyNumberCalculator).contains("is not a Lucky Number"))
   }
 
+  test("Test passing in invalid integers") {
+    assert(app.processRequest(Array("1001"), new LuckyNumberCalculator).contains("Value must be between 1 and 1000"))
+    assert(app.processRequest(Array("0"), new LuckyNumberCalculator).contains("Value must be between 1 and 1000"))
+    assert(app.processRequest(Array("-10"), new LuckyNumberCalculator).contains("Value must be between 1 and 1000"))
+  }
+
   test("Test passing in a non integer") {
     assert(app.processRequest(Array("test"), new LuckyNumberCalculator).contains("Value must be a number"))
   }

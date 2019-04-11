@@ -10,9 +10,13 @@ class LuckyNumberApp {
       args.length match {
         case 1 =>
           try {
-            val path = calculator.luckyNumberPath(args(0).toInt, Set.empty, Set.empty, Set.empty)
-            if (path.contains(1)) args(0) + " is a Lucky Number"
-            else args(0) + "is not a Lucky Number"
+            val number = args(0).toInt
+            if (number <= 0 || number > 1000) "Value must be between 1 and 1000:  Usage: luckyNumber [value: Int]"
+            else {
+              val path = calculator.luckyNumberPath(args(0).toInt, Set.empty, Set.empty, Set.empty)
+              if (path.contains(1)) args(0) + " is a Lucky Number"
+              else args(0) + "is not a Lucky Number"
+            }
           } catch {
             case nfe: NumberFormatException => "Value must be a number: Usage: luckyNumber [value: Int]\""
           }
